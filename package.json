@@ -1,0 +1,10 @@
+{
+  "name": "traceUI",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap-vue": "^2.21.2",
+    "vue": "^3.2.31",
+    "vue-flex": "^2.1.2",
+    "vue-transmit": "^8.1.4"
+  }
+}
