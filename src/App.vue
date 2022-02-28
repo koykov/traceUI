@@ -1,39 +1,19 @@
 <template>
-  <b-container fluid
-               tag="main"
-               id="app"
-               v-cloak>
-    <b-navbar toggleable="md"
-              class="mb-3"
-              type="light"
-              variant="light">
+  <b-container fluid tag="main" id="app" v-cloak>
+    <b-navbar toggleable="md" class="mb-3" type="light" variant="light">
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
-      <b-collapse is-nav
-                  id="nav_collapse">
+      <b-navbar-brand href="/">traceID</b-navbar-brand>
+      <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item href="#">Link</b-nav-item>
-          <b-nav-item href="#"
-                      disabled>Disabled</b-nav-item>
+          <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-navbar-nav>
-        <!-- Right aligned nav items -->
+
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input size="sm"
-                          class="mr-sm-2"
-                          type="text"
-                          placeholder="Search" />
-            <b-button size="sm"
-                      class="my-2 my-sm-0"
-                      type="submit">Search</b-button>
+            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="#traceID" />
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">Go to</b-button>
           </b-nav-form>
-          <b-nav-item-dropdown text="Lang"
-                               right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -93,6 +73,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
