@@ -1,4 +1,4 @@
-# traceui
+# traceUI
 
 ## Project setup
 ```
