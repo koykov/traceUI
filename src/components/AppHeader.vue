@@ -14,7 +14,7 @@
 
       <b-navbar-nav class="ml-auto">
         <b-nav-form @submit.stop.prevent="submitGOTO">
-          <b-form-input v-model="keyword"
+          <b-form-input v-model="tid"
                         size="sm"
                         class="mr-sm-2"
                         type="text"
@@ -30,6 +30,16 @@
 
 <script>
 export default {
-  name: "AppHeader"
+  name: "AppHeader",
+  data() {
+    return {
+      tid: '',
+    }
+  },
+  methods: {
+    submitGOTO(){
+      this.$router.push({name: 'trace', params: {id: this.tid}});
+    }
+  }
 }
 </script>
