@@ -1,14 +1,19 @@
 <template>
-  <b-container fluid tag="main" id="app" v-cloak>
-    <b-navbar toggleable="md" class="mb-3" type="light" variant="light">
+  <b-container fluid
+               tag="main"
+               id="app"
+               v-cloak>
+    <b-navbar toggleable="md"
+              class="mb-3"
+              type="light"
+              variant="light">
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
       <b-navbar-brand href="/">traceID</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
+      <b-collapse is-nav
+                  id="nav_collapse">
         <b-navbar-nav>
-          <router-link :to="{name: 'home'}" itemscope>Home</router-link>
-          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item :to="{name: 'home'}">Home</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
-          <router-view></router-view>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
