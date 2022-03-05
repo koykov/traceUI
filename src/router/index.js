@@ -13,7 +13,7 @@ export default new Router({
         {
             name: 'trace',
             path: '/trace/:id',
-            component: () => import("@/components/TraceView"),
+            component: () => import("@/components/ViewTrace"),
             props: true
         }
     ]

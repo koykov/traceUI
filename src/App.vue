@@ -3,27 +3,7 @@
                tag="main"
                id="app"
                v-cloak>
-    <b-navbar toggleable="md"
-              class="mb-3"
-              type="light"
-              variant="light">
-      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-      <b-navbar-brand href="/">traceID</b-navbar-brand>
-      <b-collapse is-nav
-                  id="nav_collapse">
-        <b-navbar-nav>
-          <b-nav-item :to="{name: 'home'}">Home</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
-        </b-navbar-nav>
-
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form @submit.stop.prevent="submitGOTO">
-            <b-form-input v-model="keyword" size="sm" class="mr-sm-2" type="text" placeholder="#traceID" />
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Go to</b-button>
-          </b-nav-form>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    <AppHeader/>
     <header class="text-center">
       <a href="https://github.com/alexsasharegan/vue-transmit"
          target="_blank">
@@ -48,12 +28,17 @@
       <p class="bg-danger text-white p-3 my-2"
          v-html="error"></p>
     </b-modal>
+    <AppFooter/>
   </b-container>
 </template>
 
 <script>
+import AppHeader from "@/components/AppHeader";
+import AppFooter from "@/components/AppFooter";
+
 export default {
   name: "App",
+  components: {AppHeader, AppFooter},
   data() {
     return {
       // ...
