@@ -5,14 +5,15 @@
       <b-navbar-brand href="/">traceID</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <router-link to="/" itemscope>Home</router-link>
+          <router-link :to="{name: 'home'}" itemscope>Home</router-link>
           <b-nav-item href="#">Link</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <router-view></router-view>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="#traceID" />
+          <b-nav-form @submit.stop.prevent="submitGOTO">
+            <b-form-input v-model="keyword" size="sm" class="mr-sm-2" type="text" placeholder="#traceID" />
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Go to</b-button>
           </b-nav-form>
         </b-navbar-nav>
@@ -57,6 +58,9 @@ export default {
     onError(file, errorMsg) {
       this.error = errorMsg;
       this.showModal = true;
+    },
+    submitGOTO(){
+      //this.$router.push({path: '/trace', query:{key: value}})
     }
   },
   filters: {

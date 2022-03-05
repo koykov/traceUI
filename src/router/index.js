@@ -1,16 +1,20 @@
-import {createRouter, createWebHistory} from "vue-router";
-import App from "@/App";
+import Vue from "vue";
+import Router from "vue-router";
 
-const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: App
-    }
-];
+Vue.use(Router);
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
-})
-export default router
+export default new Router({
+    routes: [
+        {
+            name: 'home',
+            path: '/',
+            component: () => import("@/App"),
+        },
+        {
+            name: 'trace',
+            path: '/trace/:id',
+            component: () => import("@/components/TraceView"),
+            props: true
+        }
+    ]
+});
