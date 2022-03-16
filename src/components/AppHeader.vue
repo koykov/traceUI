@@ -1,8 +1,8 @@
 <template>
   <b-navbar toggleable="md"
             class="mb-3"
-            type="light"
-            variant="light">
+            type="dark"
+            variant="dark">
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
     <b-navbar-brand href="/">traceID</b-navbar-brand>
     <b-collapse is-nav
