@@ -11,8 +11,14 @@ export default new Router({
             component: () => import("@/App"),
         },
         {
-            name: 'trace',
-            path: '/trace/:id',
+            name: 'view',
+            path: '/view/:id',
+            component: () => import("@/components/ViewTrace"),
+            props: true
+        },
+        {
+            name: 'dl',
+            path: '/dl/:id',
             component: () => import("@/components/ViewTrace"),
             props: true
         }

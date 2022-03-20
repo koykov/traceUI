@@ -14,20 +14,27 @@
             <tr>
               <th scope="col">#ID</th>
               <th scope="col">Date/time</th>
+              <th scope="colgroup" rowspan="2">Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr>
               <th scope="row">1</th>
               <td>Mark</td>
+              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
+              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Jacob</td>
+              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
+              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>@twitter</td>
+              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
+              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
             </tr>
             </tbody>
           </table>
