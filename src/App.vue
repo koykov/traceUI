@@ -19,7 +19,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in list">
+            <tr v-for="item in list"
+                :key="item.id">
               <th scope="row">{{item.id}}</th>
               <td>{{item.dt}}</td>
               <td><router-link :to="{name: 'view', params: {id: item.id}}">View</router-link></td>
@@ -27,7 +28,9 @@
             </tr>
             </tbody>
           </table>
-          <div v-else class="alert alert-warning mt-4" role="alert">No traces available.</div>
+          <div v-else
+               class="alert alert-warning mt-4"
+               role="alert">No traces available.</div>
         </div>
 
     </b-container>

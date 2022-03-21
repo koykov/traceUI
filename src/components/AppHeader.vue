@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     submitGOTO(){
-      this.$router.push({name: 'trace', params: {id: this.tid}});
+      this.$router.push({name: 'view', params: {id: this.tid}});
     }
   }
 }
