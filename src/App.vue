@@ -9,35 +9,25 @@
 
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <h6 class="border-bottom pb-2 mb-0">Recent traces</h6>
-          <table class="table table-striped table-hover">
+          <table v-if="listOK"
+              class="table table-striped table-hover">
             <thead>
             <tr>
               <th scope="col">#ID</th>
               <th scope="col">Date/time</th>
-              <th scope="colgroup" rowspan="2">Actions</th>
+              <th scope="colgroup" colspan="2">Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
-              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
-              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>@twitter</td>
-              <td><router-link :to="{name: 'view', params: {id: '1'}}">View</router-link></td>
-              <td><router-link :to="{name: 'dl', params: {id: '1'}}">Download</router-link></td>
+            <tr v-for="item in list">
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.dt}}</td>
+              <td><router-link :to="{name: 'view', params: {id: item.id}}">View</router-link></td>
+              <td><router-link :to="{name: 'dl', params: {id: item.id}}">Download</router-link></td>
             </tr>
             </tbody>
           </table>
+          <div v-else class="alert alert-warning mt-4" role="alert">No traces available.</div>
         </div>
 
     </b-container>
@@ -55,7 +45,8 @@ export default {
   components: {AppHeader, AppFooter},
   data() {
     return {
-      // ...
+      listOK: this.listOK,
+      list: this.list
     };
   },
   methods: {
@@ -83,8 +74,8 @@ export default {
           }
         })
         .then(response => {
-          this.list = response.body;
-          this.listOK = true;
+          this.list = response.payload;
+          this.listOK = this.list.length > 0;
         })
         .catch(err => {
           console.log(err);
