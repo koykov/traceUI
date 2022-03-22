@@ -8,18 +8,18 @@ export default new Router({
         {
             name: 'home',
             path: '/',
-            component: () => import("@/App"),
+            component: () => import("@/views/ViewHome"),
         },
         {
             name: 'view',
             path: '/view/:id',
-            component: () => import("@/components/ViewTrace"),
+            component: () => import("@/views/ViewTrace"),
             props: true
         },
         {
             name: 'dl',
             path: '/dl/:id',
-            component: () => import("@/components/ViewTrace"),
+            component: () => import("@/views/ViewTrace"),
             props: true
         }
     ]
