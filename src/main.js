@@ -6,8 +6,6 @@ import router from "./router";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-Vue.component('TraceView',require('./components/ViewTrace.vue').default);
-
 Vue.use(BootstrapVue);
 Vue.use(VueFlex);
 
