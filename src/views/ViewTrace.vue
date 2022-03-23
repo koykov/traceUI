@@ -1,6 +1,6 @@
 <template>
   <div>
-    foobar
+    {{ tid }}
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: "ViewTrace",
   data() {
     return {
-      //
+      tid: this.$route.params.id
     };
   }
 }
