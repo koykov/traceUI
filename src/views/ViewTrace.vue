@@ -1,6 +1,12 @@
 <template>
   <div>
-    {{ tid }}
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><router-link :to="{name: 'home'}">Home</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ tid }}</li>
+      </ol>
+    </nav>
 
     <div data-qa="commit-list-container" class="t-log">
       <div class="t-th-tree">
