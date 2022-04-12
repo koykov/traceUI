@@ -1,12 +1,26 @@
 <template>
   <div>
 
-    <nav aria-label="breadcrumb">
+    <nav v-if="breadcrumbs.length>0" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><router-link :to="{name: 'home'}">Home</router-link></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ tid }}</li>
+        <li v-for="item in breadcrumbs" :key="item.title" class="breadcrumb-item">
+          <router-link v-if="item.target !== undefined" :to="{name: item.target, params: item.params}">{{ item.title }}</router-link>
+          <span v-else>{{ item.title }}</span>
+        </li>
       </ol>
     </nav>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Default</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Service 0</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Service 1</a>
+      </li>
+    </ul>
 
     <div class="t-log">
       <div class="t-th-tree">
@@ -351,8 +365,20 @@ export default {
   name: "ViewTrace",
   components: {ThreadAcqSvg, ThreadRelSvg},
   data() {
+    let bc = [];
+    let tid = this.$route.params.id;
+    let sid = this.$route.params.sid
+    bc.push({title: "Home", target: "home", params: {}});
+    if (sid !== undefined && sid.length > 0) {
+      bc.push({title: tid, target: "view", params: {id: tid}});
+      bc.push({title: sid});
+    } else {
+      bc.push({title: tid});
+    }
     return {
-      tid: this.$route.params.id
+      breadcrumbs: bc,
+      tid: this.$route.params.id,
+      sid: this.$route.params.sid,
     };
   }
 }

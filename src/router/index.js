@@ -17,6 +17,12 @@ export default new Router({
             props: true
         },
         {
+            name: 'view',
+            path: '/view/:id/:sid',
+            component: () => import("@/views/ViewTrace"),
+            props: true
+        },
+        {
             name: 'dl',
             path: '/dl/:id',
             component: () => import("@/views/ViewTrace"),
