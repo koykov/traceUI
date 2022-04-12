@@ -8,7 +8,7 @@
       </ol>
     </nav>
 
-    <div data-qa="commit-list-container" class="t-log">
+    <div class="t-log">
       <div class="t-th-tree">
         <svg width="48" height="1040" focusable="false" aria-hidden="true" class="t-flow-container">
           <g transform="translate(8, 48)">
@@ -124,8 +124,8 @@
       </div>
       <div class="t-tab-container">
         <div class="t-tab-flex">
-          <div class="t-tab-row">
-            <table class="t-tab">
+          <div class="t-tab-row table-responsive">
+            <table class="t-tab table table-hover">
               <thead>
               <tr>
                 <th class="t-tab-h">Message</th>
@@ -405,11 +405,6 @@ svg:not(:root) {
   stroke-width: 1px;
   stroke: rgb(255, 86, 48);
 }
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
 .css-84yyhk {
   r: 3;
   cursor: pointer;
@@ -417,36 +412,6 @@ svg:not(:root) {
   stroke-width: 4px;
   stroke: transparent;
   fill: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
 }
 .css-1rs47pa {
   fill: none;
@@ -461,100 +426,15 @@ svg:not(:root) {
   stroke: transparent;
   fill: rgb(0, 101, 255);
 }
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
 .css-jdft62 {
   fill: none;
   stroke-width: 1px;
   stroke: rgb(0, 184, 217);
 }
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
 .css-jdft62 {
   fill: none;
   stroke-width: 1px;
   stroke: rgb(0, 184, 217);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
 }
 .css-1t617le {
   r: 3;
@@ -564,85 +444,10 @@ svg:not(:root) {
   stroke: transparent;
   fill: rgb(0, 184, 217);
 }
-.css-jdft62 {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 184, 217);
-}
-.css-jdft62 {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 184, 217);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
 .css-10310f2 {
   fill: none;
   stroke-width: 1px;
   stroke: rgb(255, 171, 0);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
 }
 .css-bakhhg {
   r: 3;
@@ -651,41 +456,6 @@ svg:not(:root) {
   stroke-width: 4px;
   stroke: transparent;
   fill: rgb(255, 171, 0);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
-}
-.css-dok1lu {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(255, 86, 48);
-}
-.css-1rs47pa {
-  fill: none;
-  stroke-width: 1px;
-  stroke: rgb(0, 101, 255);
 }
 
 /* --- */
@@ -728,7 +498,7 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   table-layout: fixed;
   width: 100%;
   pointer-events: auto;
-  margin-top: 0px;
+  margin-top: 0;
 }
 .t-tab-h {
   color: rgb(94, 108, 132);
@@ -740,17 +510,7 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   white-space: nowrap;
 }
 .t-tab-h:first-of-type {
-  padding-left: 0px;
-}
-.css-8m4tnv {
-  color: rgb(94, 108, 132);
-  vertical-align: middle;
-  text-align: initial;
-  padding: 4px 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: none;
+  padding-left: 0;
 }
 .t-tab-td {
   overflow: hidden;
@@ -759,7 +519,7 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   height: 40px;
   box-sizing: border-box;
   text-align: initial;
-  max-width: 0px;
+  max-width: 0;
 }
 .t-tab-td {
   overflow: hidden;
@@ -768,12 +528,7 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   height: 40px;
   box-sizing: border-box;
   text-align: initial;
-  max-width: 0px;
-}
-.css-70qvj9 {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
+  max-width: 0;
 }
 .t-tab-td {
   overflow: hidden;
@@ -782,110 +537,6 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   height: 40px;
   box-sizing: border-box;
   text-align: initial;
-  max-width: 0px;
+  max-width: 0;
 }
-.css-1v0cd8t {
-  line-height: 1;
-}
-.css-1db129j {
-  height: 24px;
-  width: 24px;
-  -webkit-box-align: stretch;
-  align-items: stretch;
-  background-color: var(--background-overlay,#FFFFFF);
-  border-radius: 50%;
-  box-sizing: content-box;
-  cursor: inherit;
-  display: flex;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  justify-content: center;
-  outline: none;
-  overflow: hidden;
-  position: static;
-  transform: translateZ(0px);
-  transition: transform 200ms ease 0s, opacity 200ms ease 0s;
-  box-shadow: 0 0 0 2px var(--background-overlay,#FFFFFF);
-  border: none;
-  margin: 2px;
-  padding: 0px;
-  font-size: inherit;
-  font-family: inherit;
-}
-.css-ob4lje {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex: 1 1 100%;
-  background-color: transparent;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.css-1db129j::after {
-  background-color: transparent;
-  inset: 0px;
-  border-radius: 50%;
-  content: " ";
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  transition: opacity 200ms ease 0s;
-  width: 100%;
-}
-.css-2d54z7 {
-  margin-left: 16px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.css-gg4vpm {
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-}
-.css-1385fg2 {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-}
-.css-1e020ok {
-  cursor: default;
-  padding-left: 4px;
-}
-.css-mktid {
-  background-color: var(--ds-background-subtleNeutral-resting,#DFE1E6);
-  color: var(--ds-text-highEmphasis,#42526E);
-  display: inline-block;
-  box-sizing: border-box;
-  max-width: 100%;
-  padding: 2px 0px 3px;
-  border-radius: 3px;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  vertical-align: baseline;
-}
-.css-1wsum1f {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0px 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: top;
-  white-space: nowrap;
-}
-.css-c7g021 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  line-height: 2;
-  padding-left: 4px;
-}
-
 </style>
