@@ -507,12 +507,6 @@ table {
 tbody, tfoot, thead {
   border-bottom: 2px solid #dfe1e6;
 }
-td:first-child, th:first-child {
-  padding-left: 0;
-}
-td:last-child, th:last-child {
-  padding-right: 0;
-}
 tbody, tfoot, thead {
   border-bottom: 2px solid #dfe1e6;
 }
@@ -534,9 +528,6 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.t-tab-h:first-of-type {
-  padding-left: 0;
 }
 .t-tab-td {
   overflow: hidden;
