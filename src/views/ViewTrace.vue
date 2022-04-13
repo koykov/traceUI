@@ -10,7 +10,7 @@
       </ol>
     </nav>
 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs mb-3">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="#">Default</a>
       </li>
