@@ -12,13 +12,13 @@ export default new Router({
         },
         {
             name: 'view',
-            path: '/view/:id',
+            path: '/view/:id/:sid',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
         {
             name: 'view',
-            path: '/view/:id/:sid',
+            path: '/view/:id',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
