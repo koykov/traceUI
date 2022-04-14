@@ -7,7 +7,7 @@
                  id="app"
                  v-cloak>
 
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
 
     </b-container>
 
