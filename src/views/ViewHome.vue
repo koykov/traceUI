@@ -13,8 +13,8 @@
       <tbody>
       <tr v-for="item in list"
           :key="item.id">
-        <th scope="row">{{item.id}}</th>
-        <td>{{item.dt}}</td>
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.dt }}</td>
         <td><router-link :to="{name: 'view', params: {id: item.id}}">View</router-link></td>
         <td><router-link :to="{name: 'dl', params: {id: item.id}}">Download</router-link></td>
       </tr>
