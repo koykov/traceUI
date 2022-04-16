@@ -144,201 +144,13 @@
                 </thead>
                 <tbody>
                 <tr v-for="rec in service" :key="rec.id">
-                  <td class="t-tab-td">{{ rec.text }}</td>
+                  <td class="t-tab-td">
+                    <span v-if="rec.thtyp !== undefined && rec.thtyp === 'TH_ACQ'"><ThreadAcqSvg/> Thread #{{ rec.thid }}: acquire child thread #{{ rec.chid }}.</span>
+                    <span v-else-if="rec.thtyp !== undefined && rec.thtyp === 'TH_REL'"><ThreadRelSvg/> Thread #{{ rec.thid }}: release child thread #{{ rec.chid }}.</span>
+                    <span v-else>{{ rec.text }}</span>
+                  </td>
                   <td class="t-tab-td">
                     <time :datetime="rec.dt" :title="rec.dt">{{ rec.dt }}</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    <ThreadAcqSvg/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    <ThreadRelSvg/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
                   </td>
                 </tr>
                 </tbody>
@@ -417,18 +229,23 @@ export default {
           let sid = this.$route.params.sid;
           for (let i in this.trace.services) {
             let svc = this.trace.services[i];
-            if (svc.ID === sid || (sid === undefined && i === 0)) {
+            if (svc.ID === sid || (sid === undefined && i === '0')) {
               for (i in svc.records) {
                 let rec = svc.records[i];
                 if (rec.rows !== undefined) {
                   this.service.push({
                     id: rec.rows[0].id,
+                    thid: rec.threadID,
+                    chid: 0,
                     text: rec.rows[0].value,
                     dt: rec.rows[0].dt,
                   });
                 } else if (rec.thread !== undefined) {
                   this.service.push({
                     id: rec.thread.id,
+                    thid: rec.threadID,
+                    chid: rec.childID,
+                    thtyp: rec.thread.type,
                     text: rec.thread.type,
                     dt: rec.thread.dt,
                   });
