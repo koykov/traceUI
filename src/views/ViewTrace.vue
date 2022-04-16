@@ -21,7 +21,7 @@
       <div class="t-log">
         <div class="t-th-tree">
           <svg width="48" height="1040" focusable="false" aria-hidden="true" class="t-flow-container">
-            <g transform="translate(8, 76)">
+            <g transform="translate(8, 54)">
               <rect x="-8" y="8" width="16" height="1000" class="t-flow-rect"></rect>
               <path d="M0,0 L0,40" class="css-1iinw0h"></path>
               <circle cx="0" cy="0" r="3" class="css-1e88pln"></circle>
@@ -135,7 +135,7 @@
         <div class="t-tab-container">
           <div class="t-tab-flex">
             <div class="t-tab-row table-responsive">
-              <table class="t-tab table table-hover">
+              <table class="t-tab table table-hover table-sm">
                 <thead>
                 <tr>
                   <th class="t-tab-h">Message</th>
@@ -208,6 +208,9 @@ export default {
       traceOK: this.traceOK,
       trace: this.trace,
       service: this.service,
+
+      flowH: 40,
+      flowW: 8,
     };
   },
   mounted() {
@@ -273,13 +276,9 @@ svg:not(:root) {
 }
 .t-th-tree {
   box-sizing: border-box;
-  padding-right: 16px;
   display: flex;
   -webkit-box-pack: end;
   justify-content: flex-end;
-}
-.t-flow-container {
-  /*transform: scaleX(-1);*/
 }
 .t-flow-rect {
   stroke: transparent;
@@ -410,25 +409,6 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 40px;
-  box-sizing: border-box;
-  text-align: initial;
-  max-width: 0;
-}
-.t-tab-td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  height: 40px;
-  box-sizing: border-box;
-  text-align: initial;
-  max-width: 0;
-}
-.t-tab-td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  height: 40px;
   box-sizing: border-box;
   text-align: initial;
   max-width: 0;
