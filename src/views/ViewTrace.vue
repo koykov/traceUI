@@ -143,12 +143,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr v-for="rec in service" :key="rec.id">
+                  <td class="t-tab-td">{{ rec.text }}</td>
                   <td class="t-tab-td">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra mollis tortor ac placerat. In interdum lobortis dui at volutpat.
-                  </td>
-                  <td class="t-tab-td">
-                    <time datetime="2021-12-28 03:42:24.683672" title="December 28, 2021, 3:16:33 PM GMT+2">2021-12-28 03:42:24.683672</time>
+                    <time :datetime="rec.dt" :title="rec.dt">{{ rec.dt }}</time>
                   </td>
                 </tr>
                 <tr>
@@ -403,7 +401,7 @@ export default {
   mounted() {
     this.traceOK = false;
     this.trace = null;
-    this.service = null;
+    this.service = [];
     fetch(process.env.VUE_APP_API_URL + "/view/" + this.$route.params.id, {"method": "GET"})
         .then(response => {
           if (response.ok) {
@@ -420,7 +418,22 @@ export default {
           for (let i in this.trace.services) {
             let svc = this.trace.services[i];
             if (svc.ID === sid || (sid === undefined && i === 0)) {
-              this.service = svc;
+              for (i in svc.records) {
+                let rec = svc.records[i];
+                if (rec.rows !== undefined) {
+                  this.service.push({
+                    id: rec.rows[0].id,
+                    text: rec.rows[0].value,
+                    dt: rec.rows[0].dt,
+                  });
+                } else if (rec.thread !== undefined) {
+                  this.service.push({
+                    id: rec.thread.id,
+                    text: rec.thread.type,
+                    dt: rec.thread.dt,
+                  });
+                }
+              }
             }
           }
         })
