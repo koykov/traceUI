@@ -376,17 +376,18 @@ export default {
     if (sid !== undefined && sid.length > 0) {
       bc.push({
         text: tid,
-        to: {name: tid, params: {id: tid}},
+        to: {name: 'view', params: {id: tid}},
         active: false
       });
       bc.push({
         text: sid,
-        to: {name: tid, params: {id: tid, sid: sid}},
+        to: {name: 'view', params: {id: tid, sid: sid}},
         active: true
       });
     } else {
       bc.push({
         text: tid,
+        to: {name: 'view'},
         active: true
       });
     }
@@ -396,11 +397,13 @@ export default {
       sid: this.$route.params.sid,
       traceOK: this.traceOK,
       trace: this.trace,
+      service: this.service,
     };
   },
   mounted() {
     this.traceOK = false;
     this.trace = null;
+    this.service = null;
     fetch(process.env.VUE_APP_API_URL + "/view/" + this.$route.params.id, {"method": "GET"})
         .then(response => {
           if (response.ok) {
@@ -410,8 +413,16 @@ export default {
           }
         })
         .then(response => {
-          this.trace = response.payload;
           this.traceOK = true;
+          this.trace = response.payload;
+
+          let sid = this.$route.params.sid;
+          for (let i in this.trace.services) {
+            let svc = this.trace.services[i];
+            if (svc.ID === sid || (sid === undefined && i === 0)) {
+              this.service = svc;
+            }
+          }
         })
         .catch(err => {
           console.log(err);
