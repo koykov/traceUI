@@ -9,11 +9,11 @@
             :key="svc.ID"
             class="nav-item">
           <router-link v-if="svc.ID === sid || (sid === undefined && i === 0)"
-                       :to="{name: 'view', params: {id: tid, sid: svc.ID}}"
+                       :to="{name: 'service', params: {id: tid, sid: svc.ID}}"
                        class="nav-link active"
                        aria-current="page">{{ svc.ID }}</router-link>
           <router-link v-else
-                       :to="{name: 'view', params: {id: tid, sid: svc.ID}}"
+                       :to="{name: 'service', params: {id: tid, sid: svc.ID}}"
                        class="nav-link">{{ svc.ID }}</router-link>
         </li>
       </ul>
@@ -376,18 +376,18 @@ export default {
     if (sid !== undefined && sid.length > 0) {
       bc.push({
         text: tid,
-        to: {name: 'view', params: {id: tid}},
+        to: {name: 'trace', params: {id: tid}},
         active: false
       });
       bc.push({
         text: sid,
-        to: {name: 'view', params: {id: tid, sid: sid}},
+        to: {name: 'service', params: {id: tid, sid: sid}},
         active: true
       });
     } else {
       bc.push({
         text: tid,
-        to: {name: 'view'},
+        to: {name: 'trace'},
         active: true
       });
     }

@@ -11,14 +11,14 @@ export default new Router({
             component: () => import("@/views/ViewHome"),
         },
         {
-            name: 'view',
-            path: '/view/:id/:sid',
+            name: 'service',
+            path: '/service/:id/:sid',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
         {
-            name: 'view',
-            path: '/view/:id',
+            name: 'trace',
+            path: '/trace/:id',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
