@@ -6,17 +6,14 @@
       <thead>
       <tr>
         <th scope="col">#ID</th>
-        <th scope="col">Date/time</th>
-        <th scope="colgroup" colspan="2">Actions</th>
+        <th scope="col">Datetime</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="item in list"
           :key="item.id">
-        <th scope="row">{{ item.id }}</th>
+        <td><router-link :to="{name: 'trace', params: {id: item.id}}">{{ item.id }}</router-link></td>
         <td>{{ item.dt }}</td>
-        <td><router-link :to="{name: 'trace', params: {id: item.id}}">View</router-link></td>
-        <td><router-link :to="{name: 'dl', params: {id: item.id}}">Download</router-link></td>
       </tr>
       </tbody>
     </table>
@@ -56,4 +53,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  text-align: initial;
+  max-width: 0;
+}
+</style>
