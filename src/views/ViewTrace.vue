@@ -35,8 +35,11 @@
                 <circle :key="i" v-if="itm.typ === 'circle'"
                         :cx="itm.x"
                         :cy="itm.y"
-                        :class="`t-flow-circle c${itm.cid}`"
-                        r="2"></circle>
+                        :class="`t-flow-circle t-flow-circle-${itm.id} c${itm.cid}`"
+                        :data-rid="itm.id"
+                        r="2"
+                        v-on:mouseover="onCircleMouseOver"
+                        v-on:mouseleave="onCircleMouseLeave"></circle>
                 <path :key="i" v-if="itm.typ === 'line'"
                       :d="`M${itm.x0},${itm.y0} L${itm.xN},${itm.yN}`"
                       :class="`t-flow-line c${itm.cid}`"></path>
@@ -58,7 +61,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="rec in service" :key="rec.id">
+                <tr v-for="rec in service" :key="rec.id"
+                    :data-rid="rec.id"
+                    :class="`t-row t-row-${rec.id}`"
+                    v-on:mouseover="onRowMouseOver"
+                    v-on:mouseleave="onRowMouseLeave">
                   <td class="t-tab-td">
                     <span v-if="rec.thtyp !== undefined && rec.thtyp === 'TH_ACQ'">
                       <ThreadAcqSvg/> Thread #{{ rec.thid }}: acquire child thread #{{ rec.chid }}.
@@ -135,6 +142,41 @@ export default {
       treeWH: this.treeWH,
     };
   },
+  methods: {
+    onCircleMouseOver: function (e) {
+      let rid = e.target.getAttribute('data-rid');
+      let els = this.$el.getElementsByClassName('t-row');
+      for (let el of els) {
+        el.classList.remove('hover');
+      }
+      let lnk = this.$el.getElementsByClassName('t-row-' + rid);
+      lnk[0].classList.add('hover');
+    },
+    onCircleMouseLeave: function () {
+      let els = this.$el.getElementsByClassName('t-row');
+      for (let el of els) {
+        el.classList.remove('hover');
+      }
+    },
+    onRowMouseOver: function (e) {
+      let rid = e.target.getAttribute('data-rid');
+      if (rid === null) {
+        rid = e.target.parentElement.getAttribute('data-rid');
+      }
+      let els = this.$el.getElementsByClassName('t-flow-circle');
+      for (let el of els) {
+        el.classList.remove('hover');
+      }
+      let lnk = this.$el.getElementsByClassName('t-flow-circle-' + rid);
+      lnk[0].classList.add('hover');
+    },
+    onRowMouseLeave: function () {
+      let els = this.$el.getElementsByClassName('t-flow-circle');
+      for (let el of els) {
+        el.classList.remove('hover');
+      }
+    }
+  },
   mounted() {
     this.traceOK = false;
     this.trace = null;
@@ -175,9 +217,11 @@ export default {
               let xo1 = 0;
               for (i in svc.records) {
                 let rec = svc.records[i];
+                let recID = 0;
                 let xoff = 0;
                 let cid = this.tidx[rec.threadID] % coff;
                 if (rec.rows !== undefined) {
+                  recID = rec.rows[0].id;
                   this.service.push({
                     id: rec.rows[0].id,
                     thid: rec.threadID,
@@ -187,6 +231,7 @@ export default {
                   });
                   xoff = this.tidx[rec.threadID] * loff;
                 } else if (rec.thread !== undefined) {
+                  recID = rec.thread.id;
                   this.service.push({
                     id: rec.thread.id,
                     thid: rec.threadID,
@@ -253,6 +298,7 @@ export default {
                   });
                 }
                 this.tree.push({
+                  id: recID,
                   typ: "circle",
                   cid: cid,
                   x: xoff,
