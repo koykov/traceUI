@@ -11,6 +11,12 @@ export default new Router({
             component: () => import("@/views/ViewHome"),
         },
         {
+            name: 'record',
+            path: '/record/:id/:sid/:rid',
+            component: () => import("@/views/ViewRecord"),
+            props: true
+        },
+        {
             name: 'service',
             path: '/service/:id/:sid',
             component: () => import("@/views/ViewTrace"),

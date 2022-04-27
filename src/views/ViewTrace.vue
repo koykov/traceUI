@@ -39,7 +39,8 @@
                         :data-rid="itm.id"
                         r="2"
                         v-on:mouseover="onCircleMouseOver"
-                        v-on:mouseleave="onCircleMouseLeave"></circle>
+                        v-on:mouseleave="onCircleMouseLeave"
+                        v-on:click="onRowClick"></circle>
                 <path :key="i" v-if="itm.typ === 'line'"
                       :d="`M${itm.x0},${itm.y0} L${itm.xN},${itm.yN}`"
                       :class="`t-flow-line c${itm.cid}`"></path>
@@ -65,7 +66,8 @@
                     :data-rid="rec.id"
                     :class="`t-row t-row-${rec.id}`"
                     v-on:mouseover="onRowMouseOver"
-                    v-on:mouseleave="onRowMouseLeave">
+                    v-on:mouseleave="onRowMouseLeave"
+                    v-on:click="onRowClick">
                   <td class="t-tab-td">
                     <span v-if="rec.thtyp !== undefined && rec.thtyp === 'TH_ACQ'">
                       <ThreadAcqSvg/> Thread #{{ rec.thid }}: acquire child thread #{{ rec.chid }}.
@@ -161,7 +163,17 @@ export default {
     onRowMouseOver: function (e) {
       let rid = e.target.getAttribute('data-rid');
       if (rid === null) {
-        rid = e.target.parentElement.getAttribute('data-rid');
+        let el = e.target;
+        for (let i=0; i<10; i++) {
+          el = el.parentElement;
+          rid = el.getAttribute('data-rid');
+          if (rid !== null && rid !== undefined) {
+            break;
+          }
+        }
+      }
+      if (rid === null) {
+        return;
       }
       let els = this.$el.getElementsByClassName('t-flow-circle');
       for (let el of els) {
@@ -175,6 +187,20 @@ export default {
       for (let el of els) {
         el.classList.remove('hover');
       }
+    },
+    onRowClick: function (e) {
+      let rid = e.target.getAttribute('data-rid');
+      if (rid === null) {
+        let el = e.target;
+        for (let i=0; i<10; i++) {
+          el = el.parentElement;
+          rid = el.getAttribute('data-rid');
+          if (rid !== null && rid !== undefined) {
+            break;
+          }
+        }
+      }
+      this.$router.push({name: 'record', params: {id: this.tid.toString(), sid: this.sid.toString(), rid: rid}});
     }
   },
   mounted() {
@@ -211,6 +237,10 @@ export default {
           for (let i in this.trace.services) {
             let svc = this.trace.services[i];
             if (svc.ID === sid || (sid === undefined && i === '0')) {
+              if (sid === undefined) {
+                sid = svc.ID;
+                this.sid = sid;
+              }
               this.treeWH.w = (svc.threads + 2) * loff;
               let bo = boff / 2;
               let to = 0;
