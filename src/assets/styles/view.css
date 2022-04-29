@@ -298,6 +298,13 @@ tbody, tfoot, thead {
 tbody, tfoot, thead {
     border-bottom: 2px solid #dfe1e6;
 }
+.table-fatal, .table-fatal>td, .table-fatal>th {
+    background-color: #b55151;
+    color: #fff;
+}
+.table-hover .table-fatal:hover, .table-fatal:hover>td, .table-fatal:hover>th {
+    background-color: #a01f1f;
+}
 blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, ol:first-child, p:first-child, pre:first-child, table:first-child, ul:first-child {
     margin-top: 0;
 }

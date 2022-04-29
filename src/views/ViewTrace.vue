@@ -64,7 +64,7 @@
                 <tbody>
                 <tr v-for="rec in service" :key="rec.id"
                     :data-rid="rec.id"
-                    :class="`t-row t-row-${rec.id}`"
+                    :class="`t-row t-row-${rec.id} ${rec.lvl}`"
                     v-on:mouseover="onRowMouseOver"
                     v-on:mouseleave="onRowMouseLeave"
                     v-on:click="onRowClick">
@@ -99,6 +99,16 @@
 <script>
 import ThreadAcqSvg from "@/components/ThreadAcqSvg";
 import ThreadRelSvg from "@/components/ThreadRelSvg";
+
+const mapLvl = {
+  "DEBUG": "table-light",
+  "INFO": "table-info",
+  "WARN": "table-warning",
+  "ERROR": "table-danger",
+  "FATAL": "table-fatal",
+  "ASSERT": "table-success",
+  "UNK": "table-secondary"
+};
 
 export default {
   name: "ViewTrace",
@@ -251,13 +261,15 @@ export default {
                 let xoff = 0;
                 let cid = this.tidx[rec.threadID] % coff;
                 if (rec.rows !== undefined) {
-                  recID = rec.rows[0].id;
+                  let first = rec.rows[0];
+                  recID = first.id;
                   this.service.push({
-                    id: rec.rows[0].id,
+                    id: first.id,
                     thid: rec.threadID,
                     chid: 0,
-                    text: rec.rows[0].value,
-                    dt: rec.rows[0].dt,
+                    text: first.value,
+                    lvl: mapLvl[first.level],
+                    dt: first.dt,
                   });
                   xoff = this.tidx[rec.threadID] * loff;
                 } else if (rec.thread !== undefined) {
@@ -268,6 +280,7 @@ export default {
                     chid: rec.childID,
                     thtyp: rec.thread.type,
                     text: rec.thread.type,
+                    lvl: mapLvl["DEBUG"],
                     dt: rec.thread.dt,
                   });
                   xoff = this.tidx[rec.threadID] * loff;
