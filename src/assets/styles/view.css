@@ -339,3 +339,14 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
     color: #212529;
     background-color: rgba(0,0,0,.075);
 }
+
+.bg-fatal {
+    background-color: #960707!important;
+    color: #fff;
+}
+
+pre {
+    word-break: break-all;
+    white-space: pre-wrap;
+    margin-bottom: 0;
+}
