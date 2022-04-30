@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <b-breadcrumb :items="breadcrumbs"></b-breadcrumb>
 
     <div v-if="traceOK">
@@ -99,16 +98,7 @@
 <script>
 import ThreadAcqSvg from "@/components/ThreadAcqSvg";
 import ThreadRelSvg from "@/components/ThreadRelSvg";
-
-const mapLvl = {
-  "DEBUG": "table-light",
-  "INFO": "table-info",
-  "WARN": "table-warning",
-  "ERROR": "table-danger",
-  "FATAL": "table-fatal",
-  "ASSERT": "table-success",
-  "UNK": "table-secondary"
-};
+import { mapLvlTable } from '@/const';
 
 export default {
   name: "ViewTrace",
@@ -217,7 +207,7 @@ export default {
     this.traceOK = false;
     this.trace = null;
     this.service = [];
-    fetch(process.env.VUE_APP_API_URL + "/view/" + this.$route.params.id, {"method": "GET"})
+    fetch(process.env.VUE_APP_API_URL + "/trace/" + this.$route.params.id, {"method": "GET"})
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -268,7 +258,7 @@ export default {
                     thid: rec.threadID,
                     chid: 0,
                     text: first.value,
-                    lvl: mapLvl[first.level],
+                    lvl: mapLvlTable[first.level],
                     dt: first.dt,
                   });
                   xoff = this.tidx[rec.threadID] * loff;
@@ -280,7 +270,7 @@ export default {
                     chid: rec.childID,
                     thtyp: rec.thread.type,
                     text: rec.thread.type,
-                    lvl: mapLvl["DEBUG"],
+                    lvl: mapLvlTable["DEBUG"],
                     dt: rec.thread.dt,
                   });
                   xoff = this.tidx[rec.threadID] * loff;

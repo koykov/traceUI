@@ -34,7 +34,7 @@ export default {
   },
   mounted() {
     this.listOK = false;
-    fetch(process.env.VUE_APP_API_URL + "/list", {"method": "GET"})
+    fetch(process.env.VUE_APP_API_URL + "/traces", {"method": "GET"})
         .then(response => {
           if (response.ok) {
             return response.json()
