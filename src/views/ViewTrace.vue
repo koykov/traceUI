@@ -90,7 +90,7 @@
     </div>
     <div v-else
          class="alert alert-warning"
-         role="alert">Trace ID #{{ tid }} not found. Go to <router-link :to="{name: 'home'}">home.</router-link>.
+         role="alert">Trace ID #{{ tid }} not found. Go to <router-link :to="{name: 'home'}">home</router-link>.
     </div>
   </div>
 </template>

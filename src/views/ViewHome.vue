@@ -19,7 +19,7 @@
     </table>
     <div v-else
          class="alert alert-warning mt-4"
-         role="alert">No traces available.</div>
+         role="alert">No traces available. Check <strong><i>traced</i></strong> service and refresh the page.</div>
   </div>
 </template>
 
