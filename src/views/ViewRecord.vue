@@ -3,12 +3,12 @@
     <b-breadcrumb :items="breadcrumbs"></b-breadcrumb>
 
     <div v-if="recordOK">
-      <h2>{{ record.top.value }}</h2>
-      <div class="float-right">{{ record.top.dt }}</div>
-      <div class="levels">
+      <h2>
+        {{ record.top.value }}
         <span v-for="lvl in record.top.levels" :key="lvl.class"
               :class="`badge ${lvl.class}`">{{ lvl.level }}</span>
-      </div>
+      </h2>
+      <div><strong>Datetime:</strong> {{ record.top.dt }}</div>
 
       <table v-if="record.rows.length > 0"
              class="table table-sm table-hover mt-3">

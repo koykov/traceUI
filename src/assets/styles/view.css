@@ -340,6 +340,12 @@ blockquote:first-child, dl:first-child, form:first-child, h1:first-child, h2:fir
     background-color: rgba(0,0,0,.075);
 }
 
+.badge {
+    margin-right: .3rem;
+}
+.bg-light {
+    border: 1px solid #ccc;
+}
 .bg-fatal {
     background-color: #960707!important;
     color: #fff;
