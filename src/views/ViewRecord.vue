@@ -15,8 +15,8 @@
              class="table table-sm table-hover mt-3">
         <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Level</th>
+          <th scope="col" style="width: 15%;">Name</th>
+          <th scope="col" style="width: 5%;">Level</th>
           <th scope="col">Value</th>
         </tr>
         </thead>
