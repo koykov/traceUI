@@ -8,6 +8,7 @@
         <span v-for="lvl in record.top.levels" :key="lvl.class"
               :class="`badge ${lvl.class}`">{{ lvl.level }}</span>
       </h2>
+      <div><strong>Thread:</strong> #{{ record.threadID }}</div>
       <div><strong>Datetime:</strong> {{ record.top.dt }}</div>
 
       <table v-if="record.rows.length > 0"
