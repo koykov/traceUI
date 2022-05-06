@@ -11,6 +11,23 @@
       <div><strong>Thread:</strong> #{{ record.threadID }}</div>
       <div><strong>Datetime:</strong> {{ record.top.dt }}</div>
 
+      <nav aria-label="Page navigation example" class="mt-2">
+        <ul class="pagination">
+          <li class="page-item"
+              v-bind:class="{'disabled': record.prev === undefined || record.prev === 0}">
+            <router-link :to="{name: 'record', params: {id: tid, sid: sid, rid: record.prev}}"
+                         class="page-link"
+                         title="Previous record in thread">Previous</router-link>
+          </li>
+          <li class="page-item"
+              v-bind:class="{'disabled': record.next === undefined || record.next === 0}">
+            <router-link :to="{name: 'record', params: {id: tid, sid: sid, rid: record.next}}"
+                         class="page-link"
+                         title="Next record in thread">Next</router-link>
+          </li>
+        </ul>
+      </nav>
+
       <table v-if="record.rows.length > 0"
              class="table table-sm table-hover mt-3">
         <thead>
