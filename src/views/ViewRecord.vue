@@ -2,7 +2,7 @@
   <div>
     <b-breadcrumb :items="breadcrumbs"></b-breadcrumb>
 
-    <div v-if="recordOK">
+    <div v-if="fetchOK">
       <h2>
         {{ record.top.value }}
         <span v-for="lvl in record.top.levels" :key="lvl.class"
@@ -32,9 +32,14 @@
         </tbody>
       </table>
     </div>
-    <div v-else
+    <div v-else-if="fetchFail"
          class="alert alert-warning"
          role="alert">Record #{{ rid }} not found. Go back to service <router-link :to="{name: 'service', params: {tid: tid, sid: sid}}">{{ sid }}</router-link>.
+    </div>
+    <div v-else>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -76,12 +81,14 @@ export default {
       tid: this.$route.params.id,
       sid: this.$route.params.sid,
       rid: this.$route.params.rid,
-      recordOK: this.recordOK,
+      fetchOK: this.fetchOK,
+      fetchFail: this.fetchFail,
       record: this.record,
     };
   },
   mounted() {
-    this.recordOK = false;
+    this.fetchOK = false;
+    this.fetchFail = false;
     this.record = null;
     fetch(process.env.VUE_APP_API_URL + "/record/" + this.$route.params.rid, {"method": "GET"})
         .then(response => {
@@ -92,7 +99,7 @@ export default {
           }
         })
         .then(response => {
-          this.recordOK = true;
+          this.fetchOK = true;
           this.record = response.payload;
 
           for (let i in this.record.rows) {
@@ -118,6 +125,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.fetchFail = true;
         });
   }
 }

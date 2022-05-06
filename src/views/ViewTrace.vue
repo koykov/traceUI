@@ -2,7 +2,7 @@
   <div>
     <b-breadcrumb :items="breadcrumbs"></b-breadcrumb>
 
-    <div v-if="traceOK">
+    <div v-if="fetchOK">
       <ul class="nav nav-tabs mb-3">
         <li v-for="(svc, i) in trace.services"
             :key="svc.ID"
@@ -88,9 +88,14 @@
         </div>
       </div>
     </div>
-    <div v-else
+    <div v-else-if="fetchFail"
          class="alert alert-warning"
          role="alert">Trace ID #{{ tid }} not found. Go to <router-link :to="{name: 'home'}">home</router-link>.
+    </div>
+    <div v-else>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -136,7 +141,8 @@ export default {
       breadcrumbs: bc,
       tid: this.$route.params.id,
       sid: this.$route.params.sid,
-      traceOK: this.traceOK,
+      fetchOK: this.fetchOK,
+      fetchFail: this.fetchFail,
       trace: this.trace,
       service: this.service,
 
@@ -204,7 +210,8 @@ export default {
     }
   },
   mounted() {
-    this.traceOK = false;
+    this.fetchOK = false;
+    this.fetchFail = false;
     this.trace = null;
     this.service = [];
     fetch(process.env.VUE_APP_API_URL + "/trace/" + this.$route.params.id, {"method": "GET"})
@@ -220,7 +227,7 @@ export default {
           const boff = 34.59;
           const coff = 20;
 
-          this.traceOK = true;
+          this.fetchOK = true;
           this.trace = response.payload;
           this.treeWH = {w: 0, h: 0}
           this.tree = [{
@@ -345,6 +352,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.fetchFail = true;
         });
   }
 }
