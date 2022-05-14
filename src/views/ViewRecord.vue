@@ -13,11 +13,10 @@
 
       <nav aria-label="Page navigation example" class="mt-2">
         <ul class="pagination">
-          <li v-if="record.prev === undefined || record.prev === 0"
-              class="page-item">
+          <li class="page-item">
             <router-link :to="{name: 'stage', params: {id: tid, vid: vid, gid: gid}}"
                          class="page-link"
-                         title="Go to main trace view"><b-icon-box-arrow-left></b-icon-box-arrow-left></router-link>
+                         title="Go to main trace view"><b-icon-arrow-up></b-icon-arrow-up></router-link>
           </li>
           <li class="page-item"
               v-bind:class="{'disabled': record.prev === undefined || record.prev === 0}">
@@ -30,12 +29,6 @@
             <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
                          class="page-link"
                          title="Next record in thread">Next</router-link>
-          </li>
-          <li v-if="record.next === undefined || record.next === 0"
-              class="page-item">
-            <router-link :to="{name: 'stage', params: {id: tid, vid: vid, gid: gid}}"
-                         class="page-link"
-                         title="Go to main trace view"><b-icon-box-arrow-right></b-icon-box-arrow-right></router-link>
           </li>
         </ul>
       </nav>

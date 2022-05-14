@@ -15,5 +15,6 @@ export const mapLvlBadge = {
     ERROR: "bg-danger",
     FATAL: "bg-fatal",
     ASSERT: "bg-success",
+    COMMENT: "bg-light",
     UNK: "bg-secondary"
 };
