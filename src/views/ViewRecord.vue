@@ -15,25 +15,25 @@
         <ul class="pagination">
           <li v-if="record.prev === undefined || record.prev === 0"
               class="page-item">
-            <router-link :to="{name: 'trace', params: {id: tid, sid: sid}}"
+            <router-link :to="{name: 'stage', params: {id: tid, vid: vid, gid: gid}}"
                          class="page-link"
                          title="Go to main trace view"><b-icon-box-arrow-left></b-icon-box-arrow-left></router-link>
           </li>
           <li class="page-item"
               v-bind:class="{'disabled': record.prev === undefined || record.prev === 0}">
-            <router-link :to="{name: 'record', params: {id: tid, sid: sid, rid: record.prev}}"
+            <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.prev}}"
                          class="page-link"
                          title="Previous record in thread">Previous</router-link>
           </li>
           <li class="page-item"
               v-bind:class="{'disabled': record.next === undefined || record.next === 0}">
-            <router-link :to="{name: 'record', params: {id: tid, sid: sid, rid: record.next}}"
+            <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
                          class="page-link"
                          title="Next record in thread">Next</router-link>
           </li>
           <li v-if="record.next === undefined || record.next === 0"
               class="page-item">
-            <router-link :to="{name: 'trace', params: {id: tid, sid: sid}}"
+            <router-link :to="{name: 'stage', params: {id: tid, vid: vid, gid: gid}}"
                          class="page-link"
                          title="Go to main trace view"><b-icon-box-arrow-right></b-icon-box-arrow-right></router-link>
           </li>
@@ -63,7 +63,7 @@
     </div>
     <div v-else-if="fetchFail"
          class="alert alert-warning"
-         role="alert">Record #{{ rid }} not found. Go back to service <router-link :to="{name: 'service', params: {tid: tid, sid: sid}}">{{ sid }}</router-link>.
+         role="alert">Record #{{ rid }} not found. Go back to service <router-link :to="{name: 'stage', params: {tid: tid, vid: vid, gid: gid}}">{{ vid }}</router-link>.
     </div>
     <div v-else>
       <div class="spinner-border" role="status">
@@ -80,7 +80,8 @@ export default {
   name: "ViewRecord",
   data() {
     let tid = this.$route.params.id;
-    let sid = this.$route.params.sid;
+    let vid = this.$route.params.vid;
+    let gid = this.$route.params.gid;
     let rid = this.$route.params.rid;
 
     let bc = [
@@ -96,8 +97,13 @@ export default {
       active: false
     });
     bc.push({
-      text: sid,
-      to: {name: 'service', params: {id: tid, sid: sid}},
+      text: vid,
+      to: {name: 'service', params: {id: tid, vid: vid}},
+      active: false
+    });
+    bc.push({
+      text: gid,
+      to: {name: 'service', params: {id: tid, vid: vid, gid: gid}},
       active: false
     });
     bc.push({
@@ -108,7 +114,8 @@ export default {
     return {
       breadcrumbs: bc,
       tid: this.$route.params.id,
-      sid: this.$route.params.sid,
+      vid: this.$route.params.vid,
+      gid: this.$route.params.gid,
       rid: this.$route.params.rid,
       fetchOK: this.fetchOK,
       fetchFail: this.fetchFail,

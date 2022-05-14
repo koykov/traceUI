@@ -12,25 +12,31 @@ export default new Router({
         },
         {
             name: 'record',
-            path: '/record/:id/:sid/:rid',
+            path: '/r/:id/:vid/:gid/:rid',
             component: () => import("@/views/ViewRecord"),
             props: true
         },
         {
+            name: 'stage',
+            path: '/g/:id/:vid/:gid',
+            component: () => import("@/views/ViewTrace"),
+            props: true
+        },
+        {
             name: 'service',
-            path: '/service/:id/:sid',
+            path: '/v/:id/:vid',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
         {
             name: 'trace',
-            path: '/trace/:id',
+            path: '/t/:id',
             component: () => import("@/views/ViewTrace"),
             props: true
         },
         {
             name: 'dl',
-            path: '/dl/:id',
+            path: '/d/:id',
             component: () => import("@/views/ViewTrace"),
             props: true
         }

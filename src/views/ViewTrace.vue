@@ -5,15 +5,30 @@
     <div v-if="fetchOK">
       <ul class="nav nav-tabs mb-3">
         <li v-for="(svc, i) in trace.services"
-            :key="svc.ID"
+            :key="svc.id"
             class="nav-item">
-          <router-link v-if="svc.ID === sid || (sid === undefined && i === 0)"
-                       :to="{name: 'service', params: {id: tid, sid: svc.ID}}"
+          <router-link v-if="svc.id === vid || (vid === undefined && i === 0)"
+                       :to="{name: 'service', params: {id: tid, vid: svc.id}}"
                        class="nav-link active"
-                       aria-current="page">{{ svc.ID }}</router-link>
+                       aria-current="page">{{ svc.id }}</router-link>
           <router-link v-else
-                       :to="{name: 'service', params: {id: tid, sid: svc.ID}}"
-                       class="nav-link">{{ svc.ID }}</router-link>
+                       :to="{name: 'service', params: {id: tid, vid: svc.id}}"
+                       class="nav-link">{{ svc.id }}</router-link>
+        </li>
+      </ul>
+
+      <ul v-if="stage.length > 1" class="nav nav-pills mb-3">
+        <li v-for="(stg, i) in stage"
+            :key="stg.id"
+            class="nav-item">
+          <router-link v-if="stg.id === gid || (gid === undefined && i === 0)"
+             :to="{name: 'stage', params: {id: tid, vid: vid, gid: stg.id}}"
+             class="nav-link active"
+             aria-current="page">{{ stg.id }}</router-link>
+          <router-link v-else
+             :to="{name: 'stage', params: {id: tid, vid: vid, gid: stg.id}}"
+             class="nav-link"
+             aria-current="page">{{ stg.id }}</router-link>
         </li>
       </ul>
 
@@ -110,7 +125,8 @@ export default {
   components: {ThreadAcqSvg, ThreadRelSvg},
   data() {
     let tid = this.$route.params.id;
-    let sid = this.$route.params.sid;
+    let vid = this.$route.params.vid;
+    let gid = this.$route.params.gid;
 
     let bc = [
       {
@@ -119,17 +135,30 @@ export default {
         active: false
       }
     ];
-    if (sid !== undefined && sid.length > 0) {
+    if (vid !== undefined && vid.length > 0) {
       bc.push({
         text: tid,
         to: {name: 'trace', params: {id: tid}},
         active: false
       });
-      bc.push({
-        text: sid,
-        to: {name: 'service', params: {id: tid, sid: sid}},
-        active: true
-      });
+      if (gid !== undefined && gid.length > 0) {
+        bc.push({
+          text: vid,
+          to: {name: 'service', params: {id: tid, vid: vid}},
+          active: false
+        });
+        bc.push({
+          text: gid,
+          to: {name: 'stage', params: {id: tid, vid: vid, gid: gid}},
+          active: true
+        });
+      } else {
+        bc.push({
+          text: vid,
+          to: {name: 'service', params: {id: tid, vid: vid}},
+          active: true
+        });
+      }
     } else {
       bc.push({
         text: tid,
@@ -140,11 +169,13 @@ export default {
     return {
       breadcrumbs: bc,
       tid: this.$route.params.id,
-      sid: this.$route.params.sid,
+      vid: this.$route.params.vid,
+      gid: this.$route.params.gid,
       fetchOK: this.fetchOK,
       fetchFail: this.fetchFail,
       trace: this.trace,
       service: this.service,
+      stage: this.stage,
 
       tree: this.tree,
       treeWH: this.treeWH,
@@ -206,7 +237,7 @@ export default {
           }
         }
       }
-      this.$router.push({name: 'record', params: {id: this.tid.toString(), sid: this.sid.toString(), rid: rid}});
+      this.$router.push({name: 'record', params: {id: this.tid.toString(), vid: this.vid.toString(), gid: this.gid.toString(), rid: rid}});
     }
   },
   mounted() {
@@ -214,6 +245,7 @@ export default {
     this.fetchFail = false;
     this.trace = null;
     this.service = [];
+    this.stage = [];
     fetch(process.env.VUE_APP_API_URL + "/trace/" + this.$route.params.id, {"method": "GET"})
         .then(response => {
           if (response.ok) {
@@ -240,113 +272,128 @@ export default {
           this.tmsk = {0: true};
           this.tidx = {0: 0};
 
-          let sid = this.$route.params.sid;
+          let vid = this.$route.params.vid;
+          let gid = this.$route.params.gid;
           for (let i in this.trace.services) {
             let svc = this.trace.services[i];
-            if (svc.ID === sid || (sid === undefined && i === '0')) {
-              if (sid === undefined) {
-                sid = svc.ID;
-                this.sid = sid;
+            if (svc.id === vid || (vid === undefined && i === '0')) {
+              if (vid === undefined) {
+                vid = svc.id;
+                this.vid = vid;
               }
-              this.treeWH.w = (svc.threads + 2) * loff;
-              let bo = boff / 2;
-              let to = 0;
-              let xo1 = 0;
-              for (i in svc.records) {
-                let rec = svc.records[i];
-                let recID = 0;
-                let xoff = 0;
-                let cid = this.tidx[rec.threadID] % coff;
-                if (rec.rows !== undefined) {
-                  let first = rec.rows[0];
-                  recID = first.id;
-                  this.service.push({
-                    id: first.id,
-                    thid: rec.threadID,
-                    chid: 0,
-                    text: first.value,
-                    lvl: mapLvlTable[first.level],
-                    dt: first.dt,
-                  });
-                  xoff = this.tidx[rec.threadID] * loff;
-                } else if (rec.thread !== undefined) {
-                  recID = rec.thread.id;
-                  this.service.push({
-                    id: rec.thread.id,
-                    thid: rec.threadID,
-                    chid: rec.childID,
-                    thtyp: rec.thread.type,
-                    text: rec.thread.type,
-                    lvl: mapLvlTable["DEBUG"],
-                    dt: rec.thread.dt,
-                  });
-                  xoff = this.tidx[rec.threadID] * loff;
-                  cid = rec.threadID % coff;
-                  switch (rec.thread.type) {
-                    case 'TH_ACQ':
-                      this.tmsk[rec.childID] = true;
-                      to++;
-                      this.tidx[rec.childID] = to;
-                      xo1 = this.tidx[rec.childID] * loff;
-                      this.tree.push({
-                        typ: "curve",
-                        cid: to % coff,
-                        x0: 0,
-                        y0: bo,
-                        xM: 0,
-                        yM: bo + boff / 2,
-                        xN: xo1,
-                        yN: bo + boff / 2,
-                        xZ: xo1,
-                        yZ: bo + boff,
-                      });
-                      break;
-                    case 'TH_REL':
-                      this.tmsk[rec.childID] = false;
-                      xoff = this.tidx[rec.childID] * loff;
-                      cid = this.tidx[rec.childID] % coff;
-                      this.tree.push({
-                        typ: "curve",
-                        cid: cid,
-                        x0: xoff,
-                        y0: bo,
-                        xM: xoff,
-                        yM: bo + boff / 2,
-                        xN: 0,
-                        yN: bo + boff / 2,
-                        xZ: 0,
-                        yZ: bo + boff,
-                      });
-                      break;
-                  }
+              for (let j in svc.stages) {
+                let stg = svc.stages[j];
+                this.stage.push({
+                  id: stg.id,
+                })
+                if (stg.id === gid || (gid === undefined && j === '0')) {
+                  gid = stg.id;
+                  this.gid = gid;
                 }
-                for (i in this.tmsk) {
-                  if (!this.tmsk[i]) {
-                    continue;
+                if (stg.id !== gid) {
+                  continue;
+                }
+
+                this.treeWH.w = (stg.threads + 2) * loff;
+                let bo = boff / 2;
+                let to = 0;
+                let xo1 = 0;
+                for (i in stg.records) {
+                  let rec = stg.records[i];
+                  let recID = 0;
+                  let xoff = 0;
+                  let cid = this.tidx[rec.threadID] % coff;
+                  if (rec.rows !== undefined) {
+                    let first = rec.rows[0];
+                    recID = first.id;
+                    this.service.push({
+                      id: first.id,
+                      thid: rec.threadID,
+                      chid: 0,
+                      text: first.value,
+                      lvl: mapLvlTable[first.level],
+                      dt: first.dt,
+                    });
+                    xoff = this.tidx[rec.threadID] * loff;
+                  } else if (rec.thread !== undefined) {
+                    recID = rec.thread.id;
+                    this.service.push({
+                      id: rec.thread.id,
+                      thid: rec.threadID,
+                      chid: rec.childID,
+                      thtyp: rec.thread.type,
+                      text: rec.thread.type,
+                      lvl: mapLvlTable["DEBUG"],
+                      dt: rec.thread.dt,
+                    });
+                    xoff = this.tidx[rec.threadID] * loff;
+                    cid = rec.threadID % coff;
+                    switch (rec.thread.type) {
+                      case 'TH_ACQ':
+                        this.tmsk[rec.childID] = true;
+                        to++;
+                        this.tidx[rec.childID] = to;
+                        xo1 = this.tidx[rec.childID] * loff;
+                        this.tree.push({
+                          typ: "curve",
+                          cid: to % coff,
+                          x0: 0,
+                          y0: bo,
+                          xM: 0,
+                          yM: bo + boff / 2,
+                          xN: xo1,
+                          yN: bo + boff / 2,
+                          xZ: xo1,
+                          yZ: bo + boff,
+                        });
+                        break;
+                      case 'TH_REL':
+                        this.tmsk[rec.childID] = false;
+                        xoff = this.tidx[rec.childID] * loff;
+                        cid = this.tidx[rec.childID] % coff;
+                        this.tree.push({
+                          typ: "curve",
+                          cid: cid,
+                          x0: xoff,
+                          y0: bo,
+                          xM: xoff,
+                          yM: bo + boff / 2,
+                          xN: 0,
+                          yN: bo + boff / 2,
+                          xZ: 0,
+                          yZ: bo + boff,
+                        });
+                        break;
+                    }
                   }
-                  if (rec.thread !== undefined && parseInt(i) === parseInt(rec.childID)) {
-                    continue;
+                  for (let k in this.tmsk) {
+                    if (!this.tmsk[k]) {
+                      continue;
+                    }
+                    if (rec.thread !== undefined && parseInt(k) === parseInt(rec.childID)) {
+                      continue;
+                    }
+                    let idx = this.tidx[k];
+                    this.tree.push({
+                      typ: "line",
+                      cid: idx % coff,
+                      x0: idx * loff,
+                      y0: bo,
+                      xN: idx * loff,
+                      yN: bo + boff,
+                    });
                   }
-                  let idx = this.tidx[i];
                   this.tree.push({
-                    typ: "line",
-                    cid: idx % coff,
-                    x0: idx * loff,
-                    y0: bo,
-                    xN: idx * loff,
-                    yN: bo + boff,
+                    id: recID,
+                    typ: "circle",
+                    cid: cid,
+                    x: xoff,
+                    y: bo,
                   });
+                  bo += boff;
                 }
-                this.tree.push({
-                  id: recID,
-                  typ: "circle",
-                  cid: cid,
-                  x: xoff,
-                  y: bo,
-                });
-                bo += boff;
+                this.treeWH.h = bo + boff / 2;
               }
-              this.treeWH.h = bo + boff / 2;
             }
           }
         })
