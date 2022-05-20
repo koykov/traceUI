@@ -11,7 +11,7 @@
       <div><strong>Thread:</strong> #{{ record.threadID }}</div>
       <div><strong>Datetime:</strong> {{ record.top.dt }}</div>
 
-      <nav aria-label="Page navigation example" class="mt-2">
+      <nav class="mt-2">
         <ul class="pagination">
           <li class="page-item">
             <router-link :to="{name: 'stage', params: {id: tid, vid: vid, gid: gid}}"
@@ -53,6 +53,10 @@
         </tr>
         </tbody>
       </table>
+      <div v-else-if="record.threadIn !== undefined && record.threadIn > 0">
+        <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.threadIn}}"
+                     title="Dive to thread trace"><b-icon-box-arrow-in-down-right></b-icon-box-arrow-in-down-right> Go to thread</router-link>
+      </div>
     </div>
     <div v-else-if="fetchFail"
          class="alert alert-warning"
