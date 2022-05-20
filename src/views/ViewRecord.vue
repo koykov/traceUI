@@ -53,10 +53,12 @@
         </tr>
         </tbody>
       </table>
-      <div v-else-if="record.threadIn !== undefined && record.threadIn > 0">
-        <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.threadIn}}"
-                     title="Dive to thread trace"><b-icon-box-arrow-in-down-right></b-icon-box-arrow-in-down-right> Go to thread</router-link>
-      </div>
+      <router-link v-else-if="record.threadIn !== undefined && record.threadIn > 0"
+                   :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.threadIn}}"
+                   title="Dive to thread trace"><b-icon-box-arrow-in-down-right></b-icon-box-arrow-in-down-right> Go to thread</router-link>
+      <router-link v-else-if="record.top.type === 'TH_REL' && record.next !== 0"
+                   :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
+                   title="Dive to thread trace"><b-icon-box-arrow-down-right></b-icon-box-arrow-down-right> Continue in parent thread</router-link>
     </div>
     <div v-else-if="fetchFail"
          class="alert alert-warning"
