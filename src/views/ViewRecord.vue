@@ -22,13 +22,13 @@
               v-bind:class="{'disabled': record.prev === undefined || record.prev === 0}">
             <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.prev}}"
                          class="page-link"
-                         title="Previous record in thread">Previous</router-link>
+                         title="Previous record in current thread">Previous</router-link>
           </li>
           <li class="page-item"
               v-bind:class="{'disabled': record.next === undefined || record.next === 0}">
             <router-link :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
                          class="page-link"
-                         title="Next record in thread">Next</router-link>
+                         title="Next record in current thread">Next</router-link>
           </li>
         </ul>
       </nav>
@@ -58,7 +58,7 @@
                    title="Dive to thread trace"><b-icon-box-arrow-in-down-right></b-icon-box-arrow-in-down-right> Go to thread</router-link>
       <router-link v-else-if="record.top.type === 'TH_REL' && record.next !== 0"
                    :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
-                   title="Dive to thread trace"><b-icon-box-arrow-down-right></b-icon-box-arrow-down-right> Continue in parent thread</router-link>
+                   title="Go to first record after release in parent trace"><b-icon-box-arrow-down-right></b-icon-box-arrow-down-right> Continue in parent thread</router-link>
     </div>
     <div v-else-if="fetchFail"
          class="alert alert-warning"
