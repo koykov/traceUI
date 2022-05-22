@@ -44,12 +44,19 @@
         </thead>
         <tbody>
         <tr v-for="v in record.rows" :key="v.id">
-          <td>{{ v.name }}</td>
-          <td>
-            <span v-for="lvl in v.levels" :key="lvl.class"
-                  :class="`badge ${lvl.class}`">{{ lvl.level }}</span>
-          </td>
-          <td><pre>{{ v.value }}</pre></td>
+          <template v-if="v.level === 'COMMENT'">
+            <td colspan="3">
+              <pre style="color:#8c8c8c"><CommentSvg/> {{ v.value }}</pre>
+            </td>
+          </template>
+          <template v-else>
+            <td>{{ v.name }}</td>
+            <td>
+              <span v-for="lvl in v.levels" :key="lvl.class"
+                    :class="`badge ${lvl.class}`">{{ lvl.level }}</span>
+            </td>
+            <td><pre>{{ v.value }}</pre></td>
+          </template>
         </tr>
         </tbody>
       </table>
@@ -58,7 +65,7 @@
                    title="Dive to thread trace"><b-icon-box-arrow-in-down-right></b-icon-box-arrow-in-down-right> Go to thread</router-link>
       <router-link v-else-if="record.top.type === 'TH_REL' && record.next !== 0"
                    :to="{name: 'record', params: {id: tid, vid: vid, gid: gid, rid: record.next}}"
-                   title="Go to first record after release in parent trace"><b-icon-box-arrow-down-right></b-icon-box-arrow-down-right> Continue in parent thread</router-link>
+                   title="Go to first record after release in parent trace"><b-icon-box-arrow-up-right></b-icon-box-arrow-up-right> Continue in parent thread</router-link>
     </div>
     <div v-else-if="fetchFail"
          class="alert alert-warning"
@@ -74,9 +81,11 @@
 
 <script>
 import { mapLvlBadge } from '@/const';
+import CommentSvg from "@/components/CommentSvg";
 
 export default {
   name: "ViewRecord",
+  components: {CommentSvg},
   data() {
     let tid = this.$route.params.id;
     let vid = this.$route.params.vid;
